@@ -1,0 +1,38 @@
+#Deployment App Converter Temperatura
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appconverter-temperatura
+spec:
+  replicas: 3 #replicas do POD
+  selector:   #qual POD sera selecionado
+    matchLabels: 
+      app: appconverter-temperatura
+  template:
+    metadata: 
+      labels: 
+        app: appconverter-temperatura
+    spec:
+      containers: 
+        - name: appconverter-temperatura
+          image: rdurbano/docker_conversao_temp:v1
+          ports:
+            - containerPort: 8080
+
+
+---            
+#Service App Converter Temperatura
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: appconverter-temperatura
+spec:
+  selector:
+    app: appconverter-temperatura
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30000
+  type: NodePort
+
