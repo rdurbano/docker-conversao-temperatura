@@ -15,7 +15,7 @@ spec:
     spec:
       containers: 
         - name: appconverter-temperatura
-          image: rdurbano/docker_conversao_temp:v1
+          image: rdurbano/docker_conversao_temperatura:v1
           ports:
             - containerPort: 8080
 
